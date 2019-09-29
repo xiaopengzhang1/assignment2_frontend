@@ -1,0 +1,66 @@
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 5%;
+  }
+
+  .input {
+    height: 40px;
+    padding-left: 10px;
+    width: 100%;
+  }
+
+  .submit {
+    color: white;
+    border: none;
+    height: 40px;
+    width: 50%;
+    background-color: #2d8cf0;
+  }
+
+  .active {
+    font-size: 15px;
+    color: #2d8cf0;
+  }
+
+  .form-item {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 5px 0;
+  }
+
+  .form-item label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+</style>
+
+<form (submit)="register()">
+  <h1>Chatting Online</h1>
+  <div class="form-item">
+    <label>Avatar</label>
+    <img height="100px" width="100px" [src]="d.bypassSecurityTrustUrl(imgsrc)">
+    <input required accept=".jpg, .jpeg, .png" (change)="fileChange($event)" id="avatar" name="avatar" type="file"
+           placeholder="Choose a portrait">
+  </div>
+  <div class="form-item">
+    <label>Username</label>
+    <input required [(ngModel)]="formData.username" name="username" class="input" type="text" placeholder="username">
+  </div>
+  <div class="form-item">
+    <label>Password</label>
+    <input required [(ngModel)]="formData.password" name="password" class="input" type="password"
+           placeholder="Password">
+  </div>
+  <p style="color: red">{{error}}</p>
+  <p><span class="active"><a [routerLink]="['/login']" class="active">Login</a></span></p>
+  <input class="submit" type="submit" value="Register">
+</form>
+
+
